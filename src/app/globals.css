@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-cream: #fbf6f0;
+  --color-cream-soft: #f5ede3;
+  --color-cream-mid: #ead9c8;
+  --color-cream-deep: #d9c2a8;
+  --color-terracotta: #c45c26;
+  --color-terracotta-soft: #d4784a;
+  --color-terracotta-deep: #8f3d18;
+  --color-gold: #c9a66b;
+  --color-gold-soft: #e0c48a;
+  --color-gold-deep: #9a7a3f;
+  --color-ink: #3d2b1f;
+  --color-ink-soft: #5c4332;
+  --color-ink-muted: #7a5c45;
+  --color-sage: #6b7f5a;
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+}
+
+:root {
+  --background: #fbf6f0;
+  --foreground: #3d2b1f;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+::selection {
+  background: color-mix(in srgb, #c45c26 35%, transparent);
+  color: #3d2b1f;
+}
+
+.font-serif {
+  font-family: var(--font-serif), Georgia, "Times New Roman", serif;
+}
