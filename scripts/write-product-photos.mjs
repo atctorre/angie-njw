@@ -11,7 +11,7 @@ mkdirSync(outDir, { recursive: true });
 mkdirSync(brandDir, { recursive: true });
 
 function loadB64(stem) {
-  const mjs = join(modDir, stem === "logo" ? "logo.mjs" : `photo${stem}.mjs`);
+  const mjs = join(modDir, stem === "logo" || stem === "avatar" ? `${stem}.mjs` : `photo${stem}.mjs`);
   if (existsSync(mjs)) {
     const txt = readFileSync(mjs, "utf8");
     const m = txt.match(/"([A-Za-z0-9+/=]+)"/);
@@ -41,6 +41,7 @@ if (existsSync(srcDir)) {
 if (existsSync(modDir)) {
   for (const f of readdirSync(modDir)) {
     if (f === "logo.mjs") stems.add("logo");
+    if (f === "avatar.mjs") stems.add("avatar");
     const m = f.match(/^photo(\d+)\.mjs$/);
     if (m) stems.add(m[1]);
   }
@@ -54,6 +55,7 @@ for (const stem of stems) {
     const buf = Buffer.from(b64, "base64");
     if (buf.length < 100) continue;
     if (stem === "logo") writeFileSync(join(brandDir, "logo.jpg"), buf);
+    else if (stem === "avatar") writeFileSync(join(brandDir, "avatar.jpg"), buf);
     else writeFileSync(join(outDir, `${stem}.jpg`), buf);
     wrote++;
     console.log("wrote", stem, buf.length);
